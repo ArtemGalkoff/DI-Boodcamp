@@ -108,7 +108,7 @@ sentence = sentence.trim();
 
 console.log(sentence);  */
 
-//Ex7 Secret Group
+/* //Ex7 Secret Group
 const names = ["Jack", "Philip", "Sarah", "Amanda", "Bernard", "Kyle"];
 let abc = '';
 
@@ -116,4 +116,4 @@ for (let i = 0; i < names.length; i++) {
   abc += names[i][0];  
 }
 
-console.log(abc);
+console.log(abc); */
