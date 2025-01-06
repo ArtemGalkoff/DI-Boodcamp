@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  background-color: #333;
+  padding: 10px 0;
+}
+
+.navbar-item {
+  list-style: none;
+}
+
+.navbar-item a {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.navbar-item a:hover {
+  background-color: #575757;
+}
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-item"><a href="#home">Home</a></div>
+        <div class="navbar-item"><a href="#services">Services</a></div>
+        <div class="navbar-item"><a href="#about">About</a></div>
+        <div class="navbar-item"><a href="#contact">Contact</a></div>
+    
+    </div>
+
+<script>
+    
+(function (userName) {
+
+    const navbar = document.querySelector('.navbar')
+
+    alert(`Hello, ${userName}`);
+    let user = document.createElement('div');
+    user.id = 'user'
+    user.textContent = `${userName}`;
+    navbar.appendChild(user);
+
+    let img = document.createElement('img');
+    img.src = '#';  
+    img.alt = 'User Profile Picture'; 
+    user.appendChild(img);
+})('Nadav')
+
+
+</script>
+</body>
+</html>
