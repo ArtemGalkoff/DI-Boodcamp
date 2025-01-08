@@ -97,3 +97,10 @@ console.log(current(48));
     div.textContent = `You will be a ${job} in ${location}, and married to ${partner} with ${children} kids.`;  
     document.body.appendChild(div);  
 })(2, "Kristina", "Pert", "developer");
+
+
+const Calories = party
+  .filter(dessert => dessert.desert !== 'Apple Pie')  
+  .reduce((sum, dessert) => sum + dessert.calories, 0); 
+
+console.log(Calories); 
