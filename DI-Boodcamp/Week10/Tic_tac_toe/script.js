@@ -1,8 +1,8 @@
-let gameBoard = ['', '', '', '', '', '', '', '', ''];  // Изначально пустая доска
-let currentPlayer = '';  // Игрок
-let computerPlayer = ''; // Компьютер
-let gameActive = true;    // Игра активна
-let difficulty = 'easy';  // Уровень сложности по умолчанию
+let gameBoard = ['', '', '', '', '', '', '', '', ''];  
+let currentPlayer = '';  
+let computerPlayer = ''; 
+let gameActive = true;    
+let difficulty = 'easy'; 
 
 const winCombos = [
     [0, 1, 2],
