@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Submit Your Name</h2>
+    <form id="myForm">
+       
+        <label for="first-name">First Name:</label>
+        <input type="text" id="first-name" name="first-name" placeholder="Enter your first name" required>
+        <br><br>
+
+       
+        <label for="last-name">Last Name:</label>
+        <input type="text" id="last-name" name="last-name" placeholder="Enter your last name" required>
+        <br><br>
+
+       
+        <input type="submit" value="Send">
+    </form>
+
+    <h3>Submitted Data (JSON format):</h3>
+    <pre id="json-output"></pre>
+
+    <script>
+        
+        const form = document.getElementById('myForm');
+        
+       
+        form.addEventListener('submit', function(event) {
+            
+            event.preventDefault();
+            
+           
+            const firstName = document.getElementById('first-name').value;
+            const lastName = document.getElementById('last-name').value;
+
+            
+            const formData = {
+                firstName: firstName,
+                lastName: lastName
+            };
+
+            
+            const jsonString = JSON.stringify(formData);
+
+           
+            document.getElementById('json-output').textContent = jsonString;
+        });
+    </script>
+</body>
+</html>
