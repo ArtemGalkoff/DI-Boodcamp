@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+  }
+  
+  #emoji-container {
+    margin-bottom: 30px;
+  }
+  
+  #leaderboard-container {
+    margin-top: 50px;
+  }
+  
+  #options-container label {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  #leaderboard li {
+    list-style-type: none;
+    margin: 5px 0;
+  }

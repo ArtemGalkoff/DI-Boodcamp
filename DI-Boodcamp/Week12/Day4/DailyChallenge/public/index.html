@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emoji Guessing Game</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Emoji Guessing Game</h1>
+  <div id="emoji-container">
+    <h2 id="emoji"></h2>
+    <form id="emoji-form">
+      <div id="options-container">
+        <!-- Options will be injected here -->
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+    <p id="feedback"></p>
+  </div>
+  <div id="leaderboard-container">
+    <h3>Leaderboard</h3>
+    <ul id="leaderboard">
+      <!-- Leaderboard will be injected here -->
+    </ul>
+  </div>
+  <script>
+    let score = 0;
+    let currentEmoji = null;
+
+    // Получаем данные с сервера для нового эмодзи
+    function getEmoji() {
+      fetch('/emoji')
+        .then(response => response.json())
+        .then(data => {
+          currentEmoji = data.emoji;
+          const optionsContainer = document.getElementById('options-container');
+          document.getElementById('emoji').innerText = currentEmoji;
+
+          optionsContainer.innerHTML = '';
+          data.options.forEach(option => {
+            const label = document.createElement('label');
+            label.innerHTML = `
+              <input type="radio" name="emoji" value="${option}"> ${option}
+            `;
+            optionsContainer.appendChild(label);
+          });
+        });
+    }
+
+    // Обработка отправки формы
+    document.getElementById('emoji-form').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const selectedOption = document.querySelector('input[name="emoji"]:checked');
+      
+      if (selectedOption) {
+        const answer = selectedOption.value;
+        if (answer === currentEmoji) {
+          score++;
+          document.getElementById('feedback').innerText = 'Correct!';
+        } else {
+          document.getElementById('feedback').innerText = 'Incorrect!';
+        }
+      }
+
+      // Отправляем данные на сервер для обновления таблицы лидеров
+      const playerName = prompt('Enter your name:');
+      if (playerName) {
+        fetch('/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: playerName, score })
+        })
+        .then(response => response.json())
+        .then(leaderboard => {
+          const leaderboardList = document.getElementById('leaderboard');
+          leaderboardList.innerHTML = '';
+          leaderboard.forEach(player => {
+            const li = document.createElement('li');
+            li.textContent = `${player.name} - ${player.score}`;
+            leaderboardList.appendChild(li);
+          });
+        });
+      }
+
+      getEmoji();
+    });
+
+    // Загружаем первый эмодзи
+    getEmoji();
+  </script>
+</body>
+</html>
