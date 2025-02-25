@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 
 
 app.get('/emoji', (req, res) => {
-  // Генерируем случайный эмодзи
+
   const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
   
   

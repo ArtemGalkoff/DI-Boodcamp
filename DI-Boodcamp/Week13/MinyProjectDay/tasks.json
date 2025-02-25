@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Trening",
+    "description": "Fight with bear",
+    "id": 1
+  },
+  {
+    "name": "Eating",
+    "description": "Drink vodka",
+    "id": 2
+  },
+  {
+    "name": "Cleaning",
+    "description": "Clear 5 metres of snow",
+    "id": 3
+  },
+  {
+    "name": "Disput",
+    "description": "To discuss, how USA is bad",
+    "id": 4
+  },
+  {
+    "name": "Hobby",
+    "description": "Doing matreshka",
+    "id": 5
+  },
+  {
+    "name": "Beautiful",
+    "description": "Going yo sunbathe. it's just -10 degrees",
+    "id": 6
+  }
+]
