@@ -1,0 +1,41 @@
+.Voting {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  padding: 20px;
+  width: 200px;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
