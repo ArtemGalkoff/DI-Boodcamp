@@ -86,7 +86,6 @@ app.get('/protected', authenticateJWT, (req, res) => {
   res.status(200).json({ message: 'Access granted', user: req.user });
 });
 
-// 🚪 Выход
 app.post('/logout', (req, res) => {
   res.clearCookie('token');
   res.clearCookie('refreshToken');
