@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Star Wars Characters</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+  />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 480px;
+      margin: 2rem auto;
+      padding: 1rem;
+      text-align: center;
+    }
+    #character-info {
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+    }
+    .loading {
+      font-size: 2rem;
+      color: #0077ff;
+      margin-top: 1rem;
+    }
+    .error {
+      color: red;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    button {
+      padding: 0.6rem 1.2rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: 6px;
+      border: 1px solid #0077ff;
+      background-color: #0080ff;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #005bbb;
+    }
+  </style>
+</head>
+<body>
+  <h1>Star Wars Character Viewer</h1>
+  <button id="load-character-btn">Get Random Character</button>
+  <div id="character-info"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
