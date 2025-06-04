@@ -14,6 +14,15 @@
     "typeRoots": ["./node_modules/@types"],
     "sourceMap": true
   },
-  "include": ["*.ts", "controllers/*.ts", "models/*.ts", "routes/*.ts", "src"],
+  "include": ["*.ts", 
+  "controllers/*.ts",
+   "models/*.ts", 
+   "routes/*.ts",
+    "services/*.ts",
+     "config/*.ts", 
+     "middleware/*.ts",
+     "socket/*.ts",
+     "utils/*.ts"
+    ],
   "exclude": ["node_modules"]
 }
