@@ -58,7 +58,7 @@ export const sendMessage = async (req: Request, res: Response): Promise<void> =>
     await sendPushToUser(receiverId, {
       title: 'New message',
       body: `User ${req.user.username || senderId} sent you message`,
-      url: `http://localhost:5173/chat/${senderId}`, 
+      url: `https://lovestalkerfrontend.onrender.com/chat/${senderId}`, 
     });
 
     res.status(201).json(newMessage);

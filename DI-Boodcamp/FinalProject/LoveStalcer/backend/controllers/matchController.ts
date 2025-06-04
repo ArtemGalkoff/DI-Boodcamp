@@ -32,13 +32,13 @@ export const likeUser = async (req: Request, res: Response): Promise<void> => {
       await sendPushToUser(likedUserId, {
         title: "New match!",
         body: `${user.username} liked you!`,
-        url: `http://localhost:5173/matches`
+        url: `https://lovestalkerfrontend.onrender.com/matches`
       });
 
       await sendPushToUser(userId, {
         title: "New match!",
         body: `You and ${likedUser.username} have a match!`,
-        url: `http://localhost:5173/matches`
+        url: `https://lovestalkerfrontend.onrender.com/matches`
       });
 
       res.status(201).json({ message: "It's a match!", match: result.match });
