@@ -14,7 +14,6 @@ const UploadUserPhotos: React.FC<Props> = ({ userId }) => {
     const files = e.target.files;
     const formData = new FormData();
 
-    // Ограничение до 5 файлов (можно изменить)
     for (let i = 0; i < files.length && i < 5; i++) {
       formData.append('photos', files[i]);
     }
@@ -24,24 +23,23 @@ const UploadUserPhotos: React.FC<Props> = ({ userId }) => {
       const response = await fetch(`/api/users/profile/${userId}/photos`, {
         method: 'POST',
         body: formData,
-        credentials: 'include', // чтобы отправлять cookie если есть сессии
+        credentials: 'include', 
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        alert(data.message || 'Ошибка загрузки фото');
+        alert(data.message || 'Loading foto error');
         return;
       }
 
       alert('Photos uploaded successfully!');
-      // Можно тут вызвать функцию обновления данных пользователя или обновить стейт
 
     } catch (error) {
       alert('Network error during photo upload');
     } finally {
       setUploading(false);
-      e.target.value = ''; // сброс input
+      e.target.value = ''; 
     }
   };
 

@@ -5,21 +5,21 @@ import { RootState } from '../store';
 export interface Profile {
   id: number;
   username: string;
-  gender: string; // "male" | "female" | "other" и т.п.
+  gender: string; 
   age?: number;
   bio?: string;
   photo1?: string;
 }
 
 interface Filters {
-  gender: string; // "" - все, "male", "female", etc.
+  gender: string; 
   minAge: number | null;
   maxAge: number | null;
 }
 
 interface ProfilesFeedState {
-  allProfiles: Profile[]; // все загруженные профили
-  filteredProfiles: Profile[]; // отфильтрованные профили
+  allProfiles: Profile[]; 
+  filteredProfiles: Profile[]; 
   filters: Filters;
   loading: boolean;
   error: string | null;
@@ -60,7 +60,6 @@ export const fetchProfilesFeed = createAsyncThunk<
   }
 });
 
-// Хелпер для фильтрации
 const filterProfiles = (profiles: Profile[], filters: Filters) => {
   return profiles.filter(profile => {
     const genderMatch = !filters.gender || profile.gender === filters.gender;
@@ -93,7 +92,6 @@ const profilesFeedSlice = createSlice({
       .addCase(fetchProfilesFeed.fulfilled, (state, action) => {
         state.loading = false;
         state.allProfiles = action.payload;
-        // При загрузке показываем все
         state.filteredProfiles = action.payload;
       })
       .addCase(fetchProfilesFeed.rejected, (state, action) => {

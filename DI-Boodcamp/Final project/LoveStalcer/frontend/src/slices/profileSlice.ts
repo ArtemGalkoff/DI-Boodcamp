@@ -7,7 +7,7 @@ interface UserProfile {
   gender: string;
   age: number;
   bio: string;
-  photos?: string[]; // массив путей к фото
+  photos?: string[]; 
 }
 
 interface ProfileState {
@@ -22,7 +22,6 @@ const initialState: ProfileState = {
   error: null,
 };
 
-// 🔹 Загрузка профиля
 export const fetchProfile = createAsyncThunk<
   UserProfile,
   void,
@@ -42,13 +41,12 @@ export const fetchProfile = createAsyncThunk<
     }
 
     const data = await response.json();
-    return data.user ?? data; // если сервер возвращает user — берем его, иначе весь объект
+    return data.user ?? data;
   } catch {
     return thunkAPI.rejectWithValue('Network error');
   }
 });
 
-// 🔹 Обновление профиля (id передается и подставляется в URL)
 export const updateProfile = createAsyncThunk<
   UserProfile,
   {
@@ -75,7 +73,7 @@ export const updateProfile = createAsyncThunk<
       }
 
       const data = await response.json();
-      return data.user;  // <-- здесь возвращаем именно user
+      return data.user; 
     } catch {
       return thunkAPI.rejectWithValue('Network error');
     }

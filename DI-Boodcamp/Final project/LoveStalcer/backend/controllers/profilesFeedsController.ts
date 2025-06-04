@@ -10,7 +10,6 @@ export const getUnlikedProfiles = async (req: Request, res: Response): Promise<v
       return;
     }
 
-    // Забираем фильтры из query-параметров
     const gender = req.query.gender as string | undefined;
     const minAge = req.query.minAge ? parseInt(req.query.minAge as string, 10) : undefined;
     const maxAge = req.query.maxAge ? parseInt(req.query.maxAge as string, 10) : undefined;

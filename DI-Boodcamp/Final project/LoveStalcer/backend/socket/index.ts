@@ -1,7 +1,7 @@
 import { Server } from 'socket.io';
 import { saveMessage } from '../services/messageManager';
 
-const onlineUsers = new Map<number, Set<string>>(); // <-- исправлено
+const onlineUsers = new Map<number, Set<string>>(); 
 
 export const setupSocket = (io: Server) => {
   io.on('connection', (socket) => {
@@ -26,12 +26,10 @@ export const setupSocket = (io: Server) => {
         timestamp: new Date(),
       });
 
-      // Отправляем сообщение отправителю
       onlineUsers.get(senderId)?.forEach((socketId) => {
         io.to(socketId).emit('receiveMessage', savedMessage);
       });
 
-      // И получателю
       onlineUsers.get(receiverId)?.forEach((socketId) => {
         io.to(socketId).emit('receiveMessage', savedMessage);
       });

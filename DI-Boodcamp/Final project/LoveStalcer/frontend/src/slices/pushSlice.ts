@@ -15,7 +15,7 @@ function urlBase64ToUint8Array(base64String: string) {
 
 async function subscribeUserToPush(): Promise<PushSubscription> {
   if (!('serviceWorker' in navigator)) {
-    throw new Error('Service workers не поддерживаются этим браузером');
+    throw new Error('Service workers not supported by this browser');
   }
   const registration = await navigator.serviceWorker.register('/service-worker.js');
 

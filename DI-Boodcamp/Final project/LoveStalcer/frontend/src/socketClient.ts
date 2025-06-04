@@ -8,7 +8,7 @@ export const connectSocket = (userId: number) => {
   });
 
   socket.on("connect", () => {
-    socket.emit("registerUser", userId); // передаём userId
+    socket.emit("registerUser", userId); 
   });
 
   return socket;

@@ -22,14 +22,12 @@ const Chat = () => {
   const user = localStorage.getItem('user');
   const currentUserId = user ? JSON.parse(user).id : null;
 
-  // Подключение сокета
   useEffect(() => {
     if (currentUserId) {
       connectSocket(currentUserId);
       const socket = getSocket();
 
       socket.on('receiveMessage', (message: Message) => {
-        // Проверяем, относится ли сообщение к текущему чату
         if (
           (message.sender_id === Number(userId) && message.receiver_id === currentUserId) ||
           (message.sender_id === currentUserId && message.receiver_id === Number(userId))
@@ -44,7 +42,6 @@ const Chat = () => {
     }
   }, [currentUserId, userId]);
 
-  // Получение имени собеседника
   useEffect(() => {
     if (!userId) return;
 
@@ -65,7 +62,6 @@ const Chat = () => {
     fetchUsername();
   }, [userId]);
 
-  // Загрузка истории сообщений
   useEffect(() => {
     if (!userId) return;
 
@@ -89,7 +85,6 @@ const Chat = () => {
     fetchMessages();
   }, [userId]);
 
-  // Отправка сообщения через сокет
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newMessage.trim() || !userId || !currentUserId) return;
@@ -106,7 +101,7 @@ const Chat = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-base-200">
+    <div className="min-h-[93vh] flex items-center justify-center bg-base-200">
       <div className="w-[500px] h-[700px] flex flex-col border rounded-lg shadow-lg bg-[#f3f4f6] relative">
         {/* Header */}
         <div className="p-4 border-b flex justify-between items-center bg-white rounded-t-lg">

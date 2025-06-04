@@ -1,7 +1,6 @@
 import pool from '../config/db';
 import { Message } from '../models/Message';
 
-// Сохранение сообщения
 export const saveMessage = async (message: Message) => {
   const query = `
     INSERT INTO messages (sender_id, receiver_id, content, timestamp)
@@ -12,7 +11,6 @@ export const saveMessage = async (message: Message) => {
   return result.rows[0];
 };
 
-// Получение всех сообщений между двумя пользователями
 export const getMessagesBetweenUsers = async (userId1: number, userId2: number) => {
   const query = `
     SELECT * FROM messages 

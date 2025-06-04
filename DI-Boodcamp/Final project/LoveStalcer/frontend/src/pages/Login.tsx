@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../slices/authSlice';
 import type { RootState, AppDispatch } from '../store';
 import { useNavigate } from 'react-router-dom';
-import { sendLocation } from "../slices/locationSlice"; // 🆕
+import { sendLocation } from "../slices/locationSlice"; 
 
 const Login = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -18,7 +18,6 @@ const Login = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      // ✅ Локация будет отправлена 1 раз
       localStorage.setItem('locationSent', 'false');
       sendLocation();
       navigate('/home');
@@ -31,7 +30,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-[93vh] flex items-center justify-center">
       <form onSubmit={handleSubmit} className="p-6 border rounded shadow-md w-80">
         <h2 className="text-xl mb-4">Login</h2>
 

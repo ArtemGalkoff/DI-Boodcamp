@@ -7,7 +7,7 @@ import { sendPushToUser } from './pushController';
 export const getMessagesBetweenUsers = async (req: Request, res: Response): Promise<void> => {
   try {
     if (!req.user) {
-      res.status(401).json({ message: 'Пользователь не авторизован' });
+      res.status(401).json({ message: 'User is not authorized' });
       return;
     }
 
@@ -15,7 +15,7 @@ export const getMessagesBetweenUsers = async (req: Request, res: Response): Prom
     const otherUserId = Number(req.params.userId);
 
     if (!otherUserId) {
-      res.status(400).json({ message: 'User ID получателя не указан' });
+      res.status(400).json({ message: 'Recipient User ID not specified' });
       return;
     }
 
@@ -38,7 +38,7 @@ export const sendMessage = async (req: Request, res: Response): Promise<void> =>
     const { content } = req.body;
 
     if (!receiverId || !content) {
-      res.status(400).json({ message: 'Получатель и содержимое сообщения обязательны' });
+      res.status(400).json({ message: 'Recipient and message content are required' });
       return;
     }
 

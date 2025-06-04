@@ -1,9 +1,7 @@
 import pool from '../config/db';
 import { User } from '../models/User';
 
-/**
- * ✅ Создание нового пользователя в базе данных
- */
+
 export const createUser = async (
   username: string,
   email: string,
@@ -42,9 +40,6 @@ export const findUserByEmail = async (email: string): Promise<User | null> => {
   }
 };
 
-/**
- * 🔍 Найти пользователя по ID
- */
 export const findUserById = async (id: number): Promise<User | null> => {
   const query = `
     SELECT id, username, email, gender, age, bio, created_at, updated_at,
@@ -69,15 +64,11 @@ export const findUserById = async (id: number): Promise<User | null> => {
   }
 };
 
-/**
- * ✏️ Обновить данные пользователя
- */
 export const updateUser = async (
   userId: number,
   updates: Partial<User>
 ): Promise<boolean> => {
   try {
-    // Получаем текущие фото пользователя
     const res = await pool.query(
       'SELECT photo1, photo2, photo3, photo4, photo5 FROM users WHERE id = $1',
       [userId]
@@ -88,10 +79,9 @@ export const updateUser = async (
     const user = res.rows[0];
 
     const fields: string[] = [];
-    const values: any[] = [userId]; // $1 — userId
+    const values: any[] = [userId]; 
     let index = 2;
 
-    // Добавляем поля, если они есть в updates
     if (updates.username !== undefined) {
       fields.push(`username = $${index++}`);
       values.push(updates.username);
@@ -113,14 +103,12 @@ export const updateUser = async (
       values.push(updates.bio);
     }
 
-    // Добавляем старые фото
     fields.push(`photo1 = $${index++}`); values.push(user.photo1);
     fields.push(`photo2 = $${index++}`); values.push(user.photo2);
     fields.push(`photo3 = $${index++}`); values.push(user.photo3);
     fields.push(`photo4 = $${index++}`); values.push(user.photo4);
     fields.push(`photo5 = $${index++}`); values.push(user.photo5);
 
-    // Проверка, есть ли что обновлять
     if (fields.length === 0) {
       return false;
     }
@@ -138,9 +126,6 @@ export const updateUser = async (
   }
 };
 
-/**
- * ❌ Удалить пользователя
- */
 export const deleteUser = async (id: number): Promise<boolean> => {
   const query = `
     DELETE FROM users 
@@ -158,7 +143,7 @@ export const deleteUser = async (id: number): Promise<boolean> => {
 export const clearPhotoColumn = async (userId: number, column: string) => {
   const validColumns = ['photo1', 'photo2', 'photo3', 'photo4', 'photo5'];
   if (!validColumns.includes(column)) {
-    throw new Error('Неверное имя колонки');
+    throw new Error('Wrong column name');
   }
 
   const query = `UPDATE users SET ${column} = NULL WHERE id = $1`;
@@ -207,7 +192,7 @@ export const updateUserPhotos = async (
       if (emptyIndex !== -1) {
         updatedPhotos[emptyIndex] = url;
       } else {
-        console.warn('⚠️ Максимум 5 фото — новые игнорируются');
+        console.warn('⚠️Max 5 photo');
         break;
       }
     }

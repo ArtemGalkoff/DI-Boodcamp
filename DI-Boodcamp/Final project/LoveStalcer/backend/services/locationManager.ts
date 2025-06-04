@@ -1,5 +1,4 @@
 import pool from '../config/db';
-import { Location } from '../models/location';
 
 export const saveLocation = async (userId: number, latitude: number, longitude: number) => {
   const query = `

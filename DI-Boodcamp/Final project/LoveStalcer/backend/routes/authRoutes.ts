@@ -8,9 +8,9 @@ import {
 
 const router = express.Router();
 
-router.post('/register', registerUser);     // Регистрация нового пользователя
-router.post('/login', loginUser);           // Вход пользователя
-router.post('/refresh', refreshToken);      // Обновление токена
-router.post('/logout', logoutUser);         // Выход из системы
+router.post('/register', registerUser);     
+router.post('/login', loginUser);          
+router.post('/refresh', refreshToken);     
+router.post('/logout', logoutUser);         
 
 export default router;

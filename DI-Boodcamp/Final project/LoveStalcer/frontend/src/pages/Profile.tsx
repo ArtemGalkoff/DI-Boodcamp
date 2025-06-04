@@ -40,7 +40,7 @@ const Profile = () => {
     e.preventDefault();
 
     if (!profile?.id) {
-      alert("Профиль не загружен");
+      alert("Profile not loaded");
       return;
     }
 
@@ -76,14 +76,14 @@ const Profile = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        alert(data.message || "Ошибка загрузки фото");
+        alert(data.message || "Error loading photo");
         return;
       }
 
       alert("Photos uploaded successfully!");
       await dispatch(fetchProfile());
     } catch {
-      alert("Ошибка при загрузке фото");
+      alert("Error loading photo");
     } finally {
       setUploadingPhotos(false);
       e.target.value = "";
@@ -111,14 +111,14 @@ const Profile = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        alert(data.message || "Ошибка удаления");
+        alert(data.message || "Delete error");
         return;
       }
 
-      alert("Фото удалено");
+      alert("Photo deleted");
       await dispatch(fetchProfile());
     } catch {
-      alert("Ошибка при удалении фото");
+      alert("Error delete photo");
     }
   };
 
@@ -134,7 +134,7 @@ const Profile = () => {
         </button>
       </h2>
 
-      {loading && <p>Загрузка профиля...</p>}
+      {loading && <p>Loading profile...</p>}
       {error && <p className="text-red-600">{error}</p>}
 
       {profile && (

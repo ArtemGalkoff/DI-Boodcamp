@@ -9,10 +9,9 @@ import { findUserByEmail, findUserById } from '../services/userManager'
 export const registerUser = async (req: Request, res: Response): Promise<void> => {
   const { username, email, password, gender } = req.body;
 
-  // ✅ Проверка наличия обязательных полей
   if (!username || !email || !password || !gender) {
     res.status(400).json({ message: 'All fields are required.' });
-    return; // 🔄 Просто добавляем return, чтобы завершить выполнение
+    return; 
   }
 
   try {
@@ -28,14 +27,12 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
     const accessToken = generateAccessToken(user);
     const refreshToken = generateRefreshToken(user);
 
-    // Устанавливаем refreshToken в cookie
     res.cookie('refresh_token', refreshToken, { 
       httpOnly: true, 
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
     });
 
-    // Отправляем успешный ответ с accessToken
     res.status(201).json({ accessToken });
 
   } catch (error: unknown) {
@@ -54,7 +51,6 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
   password = password?.trim();
 
   try {
-    // 🔍 1️⃣ Ищем пользователя в базе данных
     const user = await findUserByEmail(email);
 
     if (!user) {
@@ -133,13 +129,11 @@ export const refreshToken = async (req: Request, res: Response): Promise<void> =
 };
 
 export const logoutUser = (req: Request, res: Response): void => {
-  // Удаляем refresh token из cookies
   res.clearCookie('refresh_token', {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'strict',
   });
 
-  // Отправляем успешный ответ
   res.status(200).json({ message: 'User logged out successfully.' });
 };

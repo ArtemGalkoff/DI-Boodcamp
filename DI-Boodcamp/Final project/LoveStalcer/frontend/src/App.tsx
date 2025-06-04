@@ -17,7 +17,7 @@ import PushManager from './pages/PushManager';
 import Register from './pages/Register';
 
 import { restoreSession } from './slices/authSlice';
-
+import { refreshAccessToken } from './slices/auth'; 
 import type { AppDispatch } from './store';
 
 const App = () => {
@@ -40,33 +40,41 @@ const App = () => {
         localStorage.removeItem('user');
       }
     } else {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
+      
+      refreshAccessToken().then((result) => {
+        if (result) {
+          localStorage.setItem('token', result.accessToken);
+          localStorage.setItem('user', JSON.stringify(result.user));
+          dispatch(restoreSession({ token: result.accessToken, user: result.user }));
+        } else {
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+        }
+      });
     }
   }, [dispatch]);
 
   return (
     <>
-     <div className="min-h-screen bg-red-300 text-blue-800">
-      <Navbar />
-      <PushManager />
-      <Routes>
-        <Route path="/" element={<Navigate to="/home" replace />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+      <div className="min-h-screen bg-red-300 text-blue-800">
+        <Navbar />
+        <PushManager />
+        <Routes>
+          <Route path="/" element={<Navigate to="/home" replace />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
-        <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
-        <Route path="/matches" element={<PrivateRoute><Matches /></PrivateRoute>} />
-        <Route path="/feed" element={<PrivateRoute><ProfilesFeed /></PrivateRoute>} />
-        <Route path="/dialogs" element={<PrivateRoute><DialogsList /></PrivateRoute>} />
+          <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
+          <Route path="/matches" element={<PrivateRoute><Matches /></PrivateRoute>} />
+          <Route path="/feed" element={<PrivateRoute><ProfilesFeed /></PrivateRoute>} />
+          <Route path="/dialogs" element={<PrivateRoute><DialogsList /></PrivateRoute>} />
 
-        <Route path="/chat/:userId" element={<PrivateRoute><Chat /></PrivateRoute>} />
-
-        <Route path="/chat" element={<Navigate to="/dialogs" replace />} />
-        <Route path="/profile/:userId" element={<GuestProfile />} />
-        <Route path="/user/:userId" element={<GuestProfile />} />
-        <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
-      </Routes>
+          <Route path="/chat/:userId" element={<PrivateRoute><Chat /></PrivateRoute>} />
+          <Route path="/chat" element={<Navigate to="/dialogs" replace />} />
+          <Route path="/profile/:userId" element={<GuestProfile />} />
+          <Route path="/user/:userId" element={<GuestProfile />} />
+          <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+        </Routes>
       </div>
     </>
   );

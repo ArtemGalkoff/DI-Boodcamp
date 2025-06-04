@@ -57,7 +57,7 @@ const DialogsList = () => {
 
   if (loading) return <p>Loading dialogs...</p>;
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
-  if (dialogs.length === 0) return <p>No dialogs yet</p>;
+  if (dialogs.length === 0) return <p className="text-center mt-12 text-black animate-pulse text-3xl font-serif">No dialogs yet</p>;
 
   return (
     <div className="max-w-md mx-auto p-4">

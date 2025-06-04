@@ -19,7 +19,6 @@ const initialState: MatchesState = {
   error: null,
 };
 
-// Получение мэтчей
 export const fetchMatches = createAsyncThunk<
   Match[],
   void,
@@ -47,9 +46,8 @@ export const fetchMatches = createAsyncThunk<
   }
 });
 
-// Лайк пользователя
 export const likeUser = createAsyncThunk<
-  { match?: any }, // можно уточнить тип
+  { match?: any }, 
   number,
   { rejectValue: string }
 >('matches/likeUser', async (likedUserId, thunkAPI) => {
@@ -71,7 +69,7 @@ export const likeUser = createAsyncThunk<
       return thunkAPI.rejectWithValue(data.message || 'Failed to like user');
     }
 
-    return data; // 👈 вернём `match` если он есть
+    return data; 
   } catch (error) {
     return thunkAPI.rejectWithValue('Network error');
   }

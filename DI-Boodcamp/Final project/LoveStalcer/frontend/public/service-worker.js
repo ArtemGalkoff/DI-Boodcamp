@@ -8,23 +8,23 @@ self.addEventListener('push', event => {
     } catch {
       data = {
         title: 'Push Notification',
-        body: text || 'Нет данных',
+        body: text || 'No data',
       };
     }
   } else {
     data = {
       title: 'Push Notification',
-      body: 'Нет данных',
+      body: 'No data',
     };
   }
 
   const options = {
-    body: data.body || 'Нет текста уведомления',
+    body: data.body || 'No text',
     icon: '/icon.png',
     badge: '/badge.png',
   };
 
   event.waitUntil(
-    self.registration.showNotification(data.title || 'Уведомление', options)
+    self.registration.showNotification(data.title || 'Notification', options)
   );
 });

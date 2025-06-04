@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { registerUser, resetRegistrationSuccess } from '../slices/authSlice';
 import type { RootState, AppDispatch } from '../store';
 import { useNavigate } from 'react-router-dom';
-import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa'; // 👁️ иконки
+import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa'; 
 
 const Register = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -13,7 +13,7 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [gender, setGender] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // 👁️
+  const [showPassword, setShowPassword] = useState(false); 
 
   const { loading, error, registrationSuccess } = useSelector(
     (state: RootState) => state.auth
@@ -36,7 +36,7 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-base-200">
+    <div className="min-h-[93vh] flex items-center justify-center bg-base-200">
       <form onSubmit={handleSubmit} className="p-6 border rounded shadow-md w-80 bg-[#7df9ff] text-black">
         <h2 className="text-xl mb-4 text-center font-bold">Register</h2>
 
@@ -91,11 +91,10 @@ const Register = () => {
   <option value="other" className="bg-white text-black">Other</option>
 </select>
 
-        {/* 🔽 Google Sign In */}
         <button
           type="button"
           className="w-full mb-3 flex items-center justify-center gap-2 border-2 border-gray-300 py-2 rounded hover:bg-gray-100"
-          onClick={() => alert('Google Sign In — TODO')}
+          onClick={() => alert('Google Sign In')}
         >
           <FaGoogle className="text-red-500" />
           Sign up with Google

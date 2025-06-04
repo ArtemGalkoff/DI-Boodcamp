@@ -5,9 +5,8 @@ dotenv.config();
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET as string;
 const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET as string;
 
-// Время жизни токенов
-const ACCESS_TOKEN_EXPIRES_IN = '15m';   // Access Token живет 15 минут
-const REFRESH_TOKEN_EXPIRES_IN = '7d';   // Refresh Token живет 7 дней
+const ACCESS_TOKEN_EXPIRES_IN = '15m';   
+const REFRESH_TOKEN_EXPIRES_IN = '7d';   
 
 interface UserPayload {
   id: number;

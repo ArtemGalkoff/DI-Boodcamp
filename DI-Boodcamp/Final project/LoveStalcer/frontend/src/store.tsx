@@ -21,7 +21,6 @@ const store = configureStore({
   },
 });
 
-// ✅ Восстановление сессии
 const token = localStorage.getItem('token');
 const user = localStorage.getItem('user');
 

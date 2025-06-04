@@ -26,7 +26,7 @@ const initialState: AuthState = {
 };
 
 export const loginUser = createAsyncThunk<
-  { accessToken: string; user: User },  // изменено здесь
+  { accessToken: string; user: User },  
   { email: string; password: string },
   { rejectValue: string }
 >('auth/loginUser', async (credentials, thunkAPI) => {
@@ -43,7 +43,7 @@ export const loginUser = createAsyncThunk<
       return thunkAPI.rejectWithValue(data.message || 'Failed to login');
     }
 
-    if (!data.accessToken || data.accessToken === 'undefined') {  // проверка на accessToken
+    if (!data.accessToken || data.accessToken === 'undefined') {  
       return thunkAPI.rejectWithValue('Invalid token received');
     }
 
@@ -54,7 +54,7 @@ export const loginUser = createAsyncThunk<
 });
 
 export const registerUser = createAsyncThunk<
-  { accessToken: string; user: User },  // аналогично
+  { accessToken: string; user: User }, 
   { username: string; email: string; password: string; gender: string },
   { rejectValue: string }
 >('auth/registerUser', async (userData, thunkAPI) => {
@@ -118,7 +118,7 @@ const authSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
 
-        state.token = action.payload.accessToken; // Используем accessToken
+        state.token = action.payload.accessToken; 
         state.user = action.payload.user;
         state.isAuthenticated = true;
         state.error = null;

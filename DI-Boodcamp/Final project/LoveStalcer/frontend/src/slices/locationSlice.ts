@@ -9,7 +9,6 @@ interface LocationState {
   error: string | null;
 }
 
-// Функция для получения города по координатам
 async function getCityFromCoords(latitude: number, longitude: number): Promise<string | null> {
   try {
     const response = await fetch(
@@ -36,7 +35,6 @@ export const sendLocation = createAsyncThunk<
 
       const { latitude, longitude } = position.coords;
 
-      // Получаем город
       const city = await getCityFromCoords(latitude, longitude);
 
       const token = localStorage.getItem('token');

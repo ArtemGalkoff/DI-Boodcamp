@@ -7,30 +7,26 @@ export const deletePhotoController = async (req: Request, res: Response) => {
   const publicId = req.params.publicId;
 
   if (!req.user || req.user.id !== userId) {
-    return res.status(403).json({ message: 'Нет доступа' });
+    return res.status(403).json({ message: 'Access denied' });
   }
 
   try {
     const user = await findUserById(userId);
-    if (!user) return res.status(404).json({ message: 'Пользователь не найден' });
+    if (!user) return res.status(404).json({ message: 'User not found' });
 
-    // Найти, в какой колонке находится это фото
     const column = (['photo1', 'photo2', 'photo3', 'photo4', 'photo5'] as const).find(
       col => user[col] && user[col].includes(publicId)
     );
 
     if (!column) {
-      return res.status(404).json({ message: 'Фото не найдено у пользователя' });
+      return res.status(404).json({ message: 'Photo not found for this user' });
     }
 
-    // Удалить с Cloudinary
     await cloudinary.uploader.destroy(publicId);
-
-    // Очистить фото в БД
     await clearPhotoColumn(userId, column);
 
-    res.json({ message: 'Фото удалено' });
+    res.json({ message: 'Photo deleted' });
   } catch (err) {
-    res.status(500).json({ message: 'Ошибка удаления фото' });
+    res.status(500).json({ message: 'Error deleting photo' });
   }
 };

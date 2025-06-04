@@ -5,7 +5,6 @@ export const addLike = async (userId: number, likedUserId: number) => {
     throw new Error("You cannot like yourself.");
   }
 
-  // Проверка на существующий лайк
   const existingLike = await pool.query(
     `SELECT * FROM likes WHERE user_id = $1 AND liked_user_id = $2`,
     [userId, likedUserId]
@@ -18,14 +17,13 @@ export const addLike = async (userId: number, likedUserId: number) => {
     );
   }
 
-  // Проверка на взаимный лайк
   const reciprocalLike = await pool.query(
     `SELECT * FROM likes WHERE user_id = $2 AND liked_user_id = $1`,
     [userId, likedUserId]
   );
 
   if (reciprocalLike.rows.length > 0) {
-    // Проверка на существующий матч
+
     const existingMatch = await pool.query(
       `
       SELECT * FROM matches
@@ -36,7 +34,6 @@ export const addLike = async (userId: number, likedUserId: number) => {
     );
 
     if (existingMatch.rows.length === 0) {
-      // Консистентный порядок userId
       const [id1, id2] = userId < likedUserId
         ? [userId, likedUserId]
         : [likedUserId, userId];

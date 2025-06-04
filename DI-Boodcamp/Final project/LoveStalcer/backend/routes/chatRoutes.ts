@@ -12,7 +12,6 @@ const router = express.Router();
 router.get('/messages/:userId', authMiddleware, getMessagesBetweenUsers);
 router.post('/messages/:userId', authMiddleware, sendMessage);
 
-// ⬇️ Новый маршрут для списка диалогов
 router.get('/dialogs', authMiddleware, getDialogs);
 router.delete('/dialogs/:partnerId', authMiddleware, deleteDialog);
 

@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
 interface Message {
-  id: number;               // было string
-  senderId: number;         // было string
+  id: number;               
+  senderId: number;         
   senderName: string;
   content: string;
   timestamp: string;
@@ -20,7 +20,6 @@ const initialState: ChatState = {
   error: null,
 };
 
-// Получение сообщений
 export const fetchMessages = createAsyncThunk<
   Message[],
   number,
@@ -46,7 +45,6 @@ export const fetchMessages = createAsyncThunk<
   }
 });
 
-// Отправка сообщения
 export const sendMessage = createAsyncThunk<
   Message,
   { receiverId: number; content: string },

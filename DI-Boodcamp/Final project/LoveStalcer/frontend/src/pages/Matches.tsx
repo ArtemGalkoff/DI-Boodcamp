@@ -52,7 +52,7 @@ const Matches = () => {
                 onClick={() => handleStartChat(user.id)}
                 className="btn btn-primary"
               >
-                Начать чат
+                Start chat
               </button>
             </li>
           ))}

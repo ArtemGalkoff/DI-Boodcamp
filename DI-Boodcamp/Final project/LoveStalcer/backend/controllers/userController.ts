@@ -5,9 +5,7 @@ import { v2 as cloudinary } from 'cloudinary';
 import fs from 'fs/promises';
 import pool from '../config/db';
 
-/**
- * ✅ Создание нового пользователя
- */
+
 export const createUserController = async (
   req: Request,
   res: Response,
@@ -29,7 +27,6 @@ export const createUserController = async (
 
 export const getUserProfile = async (req: Request, res: Response): Promise<void> => {
   try {
-    // Либо из параметра маршрута, либо из авторизации
     const userIdFromParams = req.params.id;
     const userIdFromToken = req.user?.id;
 
@@ -53,9 +50,6 @@ export const getUserProfile = async (req: Request, res: Response): Promise<void>
   }
 };
 
-/**
- * 🔍 Найти пользователя по email
- */
 export const findUserByEmailController = async (req: Request, res: Response) => {
   const { email } = req.params;
 
@@ -71,9 +65,6 @@ export const findUserByEmailController = async (req: Request, res: Response) => 
   }
 };
 
-/**
- * 🔍 Найти пользователя по ID
- */
 export const findUserByIdController = async (req: Request, res: Response) => {
   const { id } = req.params;
 
@@ -89,9 +80,7 @@ export const findUserByIdController = async (req: Request, res: Response) => {
   }
 };
 
-/**
- * ✏️ Обновить данные пользователя
- */
+
 export const updateUserController = async (
   req: Request,
   res: Response,
@@ -100,7 +89,7 @@ export const updateUserController = async (
   const userId = Number(req.params.id);
 
   if (isNaN(userId)) {
-    res.status(400).json({ message: 'Некорректный ID пользователя' });
+    res.status(400).json({ message: 'Uncorrect user ID' });
     return;
   }
 
@@ -125,7 +114,7 @@ export const updateUserController = async (
   }
 
   if (Object.keys(updates).length === 0) {
-    res.status(400).json({ message: 'Нет данных для обновления' });
+    res.status(400).json({ message: 'No data provided for update' });
     return;
   }
 
@@ -133,28 +122,25 @@ export const updateUserController = async (
     const success = await updateUser(userId, updates);
 
     if (!success) {
-      res.status(404).json({ message: 'Пользователь не найден или данные не были обновлены' });
+      res.status(404).json({ message: 'User not found or update failed.' });
       return;
     }
 
-    // Получаем обновлённого пользователя из базы
     const userRes = await pool.query('SELECT id, username, email, gender, age, bio, photo1, photo2, photo3, photo4, photo5 FROM users WHERE id = $1', [userId]);
 
     if (userRes.rowCount === 0) {
-      res.status(404).json({ message: 'Пользователь не найден после обновления' });
+      res.status(404).json({ message: 'User not found after update' });
       return;
     }
 
     const updatedUser = userRes.rows[0];
 
-    res.status(200).json({ message: 'Профиль обновлён', user: updatedUser });
+    res.status(200).json({ message: 'З', user: updatedUser });
   } catch (error) {
     next(error);
   }
 };
-/**
- * ❌ Удалить пользователя
- */
+
 export const deleteUserController = async (req: Request, res: Response) => {
   const { id } = req.params;
 
@@ -170,9 +156,6 @@ export const deleteUserController = async (req: Request, res: Response) => {
   }
 };
 
-/**
- * 📋 Получить всех пользователей
- */
 
 export const getAllUsersController = async (_req: Request, res: Response): Promise<void> => {
   try {
@@ -193,7 +176,7 @@ export const uploadUserPhotosController = async (req: Request, res: Response) =>
     const files = req.files as Express.Multer.File[];
 
     if (!files || files.length === 0) {
-      return res.status(400).json({ message: 'Фотографии не загружены' });
+      return res.status(400).json({ message: 'No photos were uploaded' });
     }
 
     const uploadResults = await Promise.all(
@@ -218,19 +201,18 @@ export const uploadUserPhotosController = async (req: Request, res: Response) =>
     const success = await updateUserPhotos(userId, photoUrls);
 
     if (!success) {
-      return res.status(500).json({ message: 'Не удалось сохранить фотографии в базе' });
+      return res.status(500).json({ message: 'Failed to save photo URLs to the database.' });
     }
 
-    // Возвращаем напрямую загруженные ссылки, не из базы
     res.status(200).json({
-      message: 'Фотографии успешно загружены',
+      message: 'Photos uploaded successfully.',
       photos: photoUrls,
     });
   } catch (error) {
     if (error instanceof Error) {
       res.status(500).json({ message: error.message });
     } else {
-      res.status(500).json({ message: 'Внутренняя ошибка сервера при загрузке фото' });
+      res.status(500).json({ message: 'Internal server error during photo upload' });
     }
   }
 };

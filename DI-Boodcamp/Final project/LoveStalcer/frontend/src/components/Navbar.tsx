@@ -17,7 +17,7 @@ const Navbar = () => {
 
   const handleHomeClick = () => {
     if (isAuthenticated && user) {
-      navigate('/login');  // по твоей логике
+      navigate('/login');  
     } else {
       navigate('/register');
     }

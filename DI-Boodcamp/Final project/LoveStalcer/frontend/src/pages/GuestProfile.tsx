@@ -35,10 +35,9 @@ const GuestProfile = () => {
           >
             <img
               src={photoUrl}
-              alt={`Фото ${index + 1}`}
+              alt={`Photo ${index + 1}`}
               className="w-full h-full object-contain"
             />
-            {/* Навигация */}
             <div className="absolute flex justify-between items-center top-1/2 transform -translate-y-1/2 left-2 right-2">
               <a
                 href={`#slide${index === 0 ? profile.photos.length - 1 : index - 1}`}

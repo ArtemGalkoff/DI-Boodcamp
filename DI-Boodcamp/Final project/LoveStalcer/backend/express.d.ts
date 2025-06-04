@@ -1,4 +1,4 @@
-import { User } from '../models/User'; // Импортируй свой интерфейс, если он у тебя в моделях
+import { User } from '../models/User'; 
 
 declare global {
   namespace Express {

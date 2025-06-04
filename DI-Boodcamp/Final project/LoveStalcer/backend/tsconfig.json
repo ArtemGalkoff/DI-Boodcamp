@@ -7,8 +7,8 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist",            // сюда будет компилироваться JS
-    "rootDir": ".",                // текущая директория — backend
+    "outDir": "./dist",           
+    "rootDir": ".",                
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "typeRoots": ["./node_modules/@types"],

@@ -5,7 +5,7 @@ export interface GuestProfileData {
   username: string;
   bio: string;
   age: number;
-  photos: string[]; // массив URL фотографий
+  photos: string[]; 
 }
 
 interface GuestProfileState {
@@ -20,7 +20,6 @@ const initialState: GuestProfileState = {
   error: null,
 };
 
-// thunk для асинхронного запроса профиля гостя
 export const fetchGuestProfile = createAsyncThunk<
   GuestProfileData,
   number,
@@ -38,14 +37,14 @@ export const fetchGuestProfile = createAsyncThunk<
       if (!res.ok) {
         const errorText = await res.text();
         return thunkAPI.rejectWithValue(
-          `Ошибка загрузки профиля: ${res.status} ${errorText}`
+          `Loading profile error: ${res.status} ${errorText}`
         );
       }
 
       const data: GuestProfileData = await res.json();
       return data;
     } catch (err: any) {
-      return thunkAPI.rejectWithValue(err.message || 'Неизвестная ошибка');
+      return thunkAPI.rejectWithValue(err.message || 'Error');
     }
   }
 );
@@ -54,7 +53,6 @@ const guestProfileSlice = createSlice({
   name: 'guestProfile',
   initialState,
   reducers: {
-    // если нужно — сюда можно добавить локальные редьюсеры
   },
   extraReducers: (builder) => {
     builder
@@ -69,7 +67,7 @@ const guestProfileSlice = createSlice({
       })
       .addCase(fetchGuestProfile.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload ?? 'Ошибка при загрузке профиля';
+        state.error = action.payload ?? 'Loading photo error';
       });
   },
 });
