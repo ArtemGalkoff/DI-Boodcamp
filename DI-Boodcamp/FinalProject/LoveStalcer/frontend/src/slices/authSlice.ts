@@ -31,7 +31,7 @@ export const loginUser = createAsyncThunk<
   { rejectValue: string }
 >('auth/loginUser', async (credentials, thunkAPI) => {
   try {
-    const response = await fetch('http://localhost:5000/api/auth/login', {
+    const response = await fetch('https://lovestalker.onrender.com/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(credentials),
@@ -59,7 +59,7 @@ export const registerUser = createAsyncThunk<
   { rejectValue: string }
 >('auth/registerUser', async (userData, thunkAPI) => {
   try {
-    const response = await fetch('http://localhost:5000/api/auth/register', {
+    const response = await fetch('https://lovestalker.onrender.com/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(userData),

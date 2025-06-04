@@ -47,7 +47,7 @@ const Chat = () => {
 
     const fetchUsername = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/users/id/${userId}`, {
+        const res = await fetch(`https://lovestalker.onrender.com/users/id/${userId}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -68,7 +68,7 @@ const Chat = () => {
     const fetchMessages = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`http://localhost:5000/api/chat/messages/${userId}`, {
+        const res = await fetch(`https://lovestalker.onrender.com/api/chat/messages/${userId}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },

@@ -48,7 +48,7 @@ export const fetchProfilesFeed = createAsyncThunk<
       return thunkAPI.rejectWithValue('No auth token found');
     }
 
-    const res = await axios.get<Profile[]>('http://localhost:5000/api/feed', {
+    const res = await axios.get<Profile[]>('https://lovestalker.onrender.com/api/feed', {
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -45,7 +45,7 @@ export const registerPushSubscription = createAsyncThunk<
 
       const subscription = await subscribeUserToPush();
 
-      const response = await fetch('http://localhost:5000/api/push/register', {
+      const response = await fetch('https://lovestalker.onrender.com/api/push/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

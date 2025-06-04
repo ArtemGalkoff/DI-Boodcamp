@@ -28,7 +28,7 @@ export const fetchProfile = createAsyncThunk<
   { rejectValue: string }
 >('profile/fetchProfile', async (_, thunkAPI) => {
   try {
-    const response = await fetch(`http://localhost:5000/users/profile`, {
+    const response = await fetch(`https://lovestalker.onrender.com/users/profile`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -58,7 +58,7 @@ export const updateProfile = createAsyncThunk<
   'profile/updateProfile',
   async ({ id, fields }, thunkAPI) => {
     try {
-      const response = await fetch(`http://localhost:5000/users/profile/${id}`, {
+      const response = await fetch(`https://lovestalker.onrender.com/users/profile/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

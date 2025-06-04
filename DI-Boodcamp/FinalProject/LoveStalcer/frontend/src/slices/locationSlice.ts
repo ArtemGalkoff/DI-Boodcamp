@@ -39,7 +39,7 @@ export const sendLocation = createAsyncThunk<
 
       const token = localStorage.getItem('token');
       await axios.post(
-        'http://localhost:5000/api/location',
+        'https://lovestalker.onrender.com/api/location',
         { latitude, longitude },
         {
           headers: {

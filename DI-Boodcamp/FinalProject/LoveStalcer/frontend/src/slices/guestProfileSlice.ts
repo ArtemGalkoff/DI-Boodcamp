@@ -28,7 +28,7 @@ export const fetchGuestProfile = createAsyncThunk<
   'guestProfile/fetchGuestProfile',
   async (userId, thunkAPI) => {
     try {
-      const res = await fetch(`http://localhost:5000/users/profile/${userId}`, {
+      const res = await fetch(`https://lovestalker.onrender.com/users/profile/${userId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token') || ''}`,
         },

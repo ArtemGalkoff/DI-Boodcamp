@@ -18,7 +18,7 @@ const DialogsList = () => {
     const fetchDialogs = async () => {
       setLoading(true);
       try {
-        const res = await fetch('http://localhost:5000/api/chat/dialogs', {
+        const res = await fetch('https://lovestalker.onrender.com/api/chat/dialogs', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -41,7 +41,7 @@ const DialogsList = () => {
   const handleDelete = async (partnerId: number) => {
     if (!confirm('Are you sure you want to delete this dialog?')) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/chat/dialogs/${partnerId}`, {
+      const res = await fetch(`https://lovestalker.onrender.com/api/chat/dialogs/${partnerId}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,

@@ -1,6 +1,6 @@
 export const refreshAccessToken = async (): Promise<{ accessToken: string; user: any } | null> => {
   try {
-    const response = await fetch('http://localhost:5000/api/auth/refresh', {
+    const response = await fetch('https://lovestalker.onrender.com/api/auth/refresh', {
       method: 'POST',
       credentials: 'include', 
     });

@@ -26,7 +26,7 @@ export const fetchMessages = createAsyncThunk<
   { rejectValue: string }
 >('chat/fetchMessages', async (userId, thunkAPI) => {
   try {
-    const response = await fetch(`http://localhost:5000/api/chat/messages/${userId}`, {
+    const response = await fetch(`https://lovestalker.onrender.com/api/chat/messages/${userId}`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -51,7 +51,7 @@ export const sendMessage = createAsyncThunk<
   { rejectValue: string }
 >('chat/sendMessage', async ({ receiverId, content }, thunkAPI) => {
   try {
-    const response = await fetch('http://localhost:5000/api/chat/messages', {
+    const response = await fetch('https://lovestalker.onrender.com/api/chat/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
